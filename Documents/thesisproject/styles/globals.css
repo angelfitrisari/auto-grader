@@ -18,3 +18,362 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.title-text{
+    color: white;
+    font-size: 70px;
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    top: 40%;
+    left: 38%;
+}
+
+.logo-style{
+  position: absolute;
+  top: 40%;
+  left: 25%;
+}
+
+.bi-display {
+  font-size: 10em;
+  position: absolute;
+  left: 23%;
+  top: 35%;
+  color: white;
+}
+
+.button-style-login{
+  position: absolute;
+  top: 60%;
+  left: 45%;
+  border-radius: 8px;
+  background-color: white;
+  transition-duration: 0.4s;
+  width: 170px;
+  height: 45px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+}
+
+.button-style-login:hover{
+  background-color: #37B1A0;
+  color: white;
+}
+
+.button-style-register{
+  position: absolute;
+  top: 60%;
+  left: 59%;
+  border-radius: 8px;
+  background-color: white;
+  transition-duration: 0.4s;
+  width: 170px;
+  height: 45px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+}
+
+.button-style-register:hover{
+  background-color: #7E8D84;
+  color: white; 
+}
+
+.title-account-text{
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  top: 38%;
+  left: 33%;
+  color: white;
+}
+
+.half-color{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 41%;
+  background-color: #33444F;
+}
+
+.form-container{
+  position: absolute;
+  top: 43%;
+  left: 43%;
+}
+
+.back-button{
+  position: absolute;
+  top: 4%;
+  left: 2%;
+}
+
+.button-style-back{
+  border-radius: 8px;
+  background-color: #33444F;
+  color: white;
+  transition-duration: 0.4s;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer; 
+}
+
+.button-style-back:hover{
+  background-color: aliceblue;
+  color: black;
+}
+
+.coding-button {
+  position: absolute;
+  top: 82.5%;
+  left: 7%;
+  margin: 50px 63px;
+  border-radius: 8px;
+  background-color: black;
+  transition-duration: 0.4s;
+  width: 170px;
+  height: 30px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  color: white;
+}
+
+.coding-button:hover {
+  background-color: #4974FA;
+  color: white;
+}
+
+.coding-field {
+  position: absolute;
+  top: 5%;
+  left: 36.5%;
+  margin: 50px 0;
+  width: 350px;
+  height: 500px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  align-items: center;
+  text-align: center;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.container-white{
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  left: 0;
+  background-color: white;
+}
+
+.result-code-container{
+  position: absolute;
+  top: 15%;
+  left: 5.3%;
+  width: 90%;
+  height: 300px;
+  color: white;
+  background-color:#33444F;
+  text-align: left;
+  color: greenyellow;
+}
+
+.result-field {
+  position: absolute;
+  top: 5%;
+  left: 70%;
+  margin: 50px 0;
+  width: 350px;
+  height: 500px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  align-items: center;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #D2D6E0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.assignment-field{
+  position: absolute;
+  top: 5%;
+  left: 3%;
+  margin: 50px 0;
+  width: 350px;
+  height: 500px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  align-items: center;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #D2D6E0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.assignment-text{
+  position: absolute;
+  top: 4%;
+  left: 5%;
+  font-family: 'Montserrat', sans-serif;
+  font-size:larger;
+  font-weight: bold;
+}
+
+.result-text{
+  position: absolute;
+  top: 4%;
+  left: 5%;
+  font-family: 'Montserrat', sans-serif;
+  font-size:larger;
+  font-weight: bold;
+}
+
+.test-case-text{
+  position: absolute;
+  top: 59%;
+  left: 5%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.test-case-task{
+  align-items: inherit;
+  text-align: left;
+}
+
+.paragraph-task{
+  align-items: center;
+  text-align: center;
+}
+
+.content-wrapper{
+  position: relative;
+  top: 12%;
+  left: 5.3%;
+  width: 90%;
+  height: 225px;
+  color: black;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+}
+
+.content-wrapper-two{
+  position: absolute;
+  top: 66%;
+  left: 5.3%;
+  width: 90%;
+  height: 150px;
+  color: greenyellow;
+  background-color: #33444F;
+}
+
+.content-wrapper-result{
+  position: absolute;
+  top: 12%;
+  left: 5.3%;
+  width: 90%;
+  height: 400px;
+  color: white;
+  background-color:#33444F;
+  text-align: left;
+}
+
+.grid-layout {
+  position: absolute;
+  top: 30%;
+  left: 27%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 1em;
+  width: 600px;
+  height: relative;
+}
+
+.grid-layout > div{
+  background: #eee;
+  padding: 1em;
+}
+
+.box-style {
+  border-radius: 8px;
+  width: 300px;
+  height: 200px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.box-style:hover {
+  background-color: #4974FA;
+  color: white;
+}
+
+.dashboard-title{
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  top: 10%;
+  left: 35%;
+  color: black; 
+}
+
+.box-color{
+  background-color: blue;
+  width: 100%;
+  height: 70%;
+}
+
+.bi-arrow-left {
+  color: #88D5E8;
+  cursor: pointer;
+  -webkit-text-stroke: 2px;
+  font-size: 1.5em;
+}
+
+.bi-arrow-left:hover {
+  color: gray;
+}
+
+.bi-trash-fill {
+  position: relative;
+  top: 20%;
+  left: 15%;
+}
+
+.editing {
+  /* Both elements need the same text and space styling so they are directly on top of each other */
+  border: 4;
+  width: calc(100% - 13px);
+  height: 400px;
+  font-size: 8pt;
+  font-family: monospace;
+  color: black;
+  background: black;
+  caret-color: black;
+  background: url(http://i.imgur.com/2cOaJ.png);
+  background-attachment: local;
+  background-repeat: no-repeat;
+  padding-left: 40px;
+  padding-top: 10px;
+  cursor: text;
+}
+
+.picture-logo {
+  background: url(https://w7.pngwing.com/pngs/182/181/png-transparent-laptop-computer-monitors-computer-icons-monitor-electronics-computer-logo.pnghttps://img.freepik.com/premium-vector/laptop-flat-icon-design-vector-illustration_549488-70.jpg);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 22%;
+  top: 43%;
+}
+
+
+
+

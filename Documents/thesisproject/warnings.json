@@ -1,0 +1,105 @@
+{ 
+    "Informational": [ 
+        { 
+            "code": "I0001", 
+            "description": "Unable to run raw checkers on built-in module %s"
+        }, 
+        { 
+            "code": "I0010", 
+            "description": "Unable to consider inline option %r"
+        }, 
+        { 
+            "code": "I0011", 
+            "description": "Locally disabling %s" 
+        } 
+    ], 
+ 
+    "Refactor": [ 
+        { 
+            "code": "R0201", 
+            "description": "Method could be a function" 
+        }, 
+        { 
+            "code": "R0401", 
+            "description": "Cyclic import (%s)" 
+        }, 
+        { 
+            "code": "R0801", 
+            "description": "Similar lines in %s files"
+        } 
+    ], 
+ 
+    "Convention": [ 
+        { 
+            "code" : "C0102", 
+            "description" : "Black listed name “%s”"
+        }, 
+        { 
+            "code": "C0103", 
+            "description" : "Invalid %s name “%s”"
+        }, 
+        { 
+            "code": "C0111", 
+            "description": "Missing %s docstring"
+        },
+        {
+            "code": "C0112",
+            "description": "Empty %s docstring"
+        },
+        {
+            "code": "C0121",
+            "description": "Missing required attribute “%s”"
+        },
+        {
+            "code": "C0202",
+            "description": "Class method %s should have c/s as first argument"
+        }
+    ], 
+ 
+    "Warning": [ 
+        { 
+            "code": "W0101", 
+            "description": "Unreachable code" 
+        }, 
+        { 
+            "code": "W0102", 
+            "description": "Dangerous default value %s as argument" 
+        }, 
+        { 
+            "code" : "W0104", 
+            "description" : "Statement seems to have no effect" 
+        } 
+    ], 
+ 
+    "Error": [ 
+        { 
+            "code" : "E0001", 
+            "description" : "(syntax error raised for a module; message varies)"
+        }, 
+        { 
+            "code": "E0011", 
+            "description": "Unrecognized file option %r" 
+        }, 
+        { 
+            "code": "E0012", 
+            "description": "Bad option value %r" 
+        } 
+    ], 
+ 
+    "Fatal": [ 
+        { 
+            "code": "F0001", 
+            "description" : "(error prevented analysis; message varies)" 
+        }, 
+        { 
+            "code": "F0002", 
+            "description" : "%s: %s (message varies)" 
+        }, 
+        { 
+            "code": "F0003", 
+            "description" : "ignored built-in module %s"
+        } 
+    ] 
+} 
+ 
+ 
