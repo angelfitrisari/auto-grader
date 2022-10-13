@@ -17,6 +17,7 @@
     "bootstrap-icons": "^1.9.1",
     "codemirror": "^6.0.1",
     "fs": "^0.0.1-security",
+    "fs-extra": "^10.1.0",
     "monaco-editor-webpack-plugin": "^7.0.1",
     "next": "12.1.6",
     "python-shell": "^3.0.1",
@@ -31,5 +32,8 @@
     "eslint": "8.17.0",
     "eslint-config-next": "12.1.6",
     "typescript": "^4.7.4"
+  },
+  "browser": {
+    "child_process": false
   }
 }

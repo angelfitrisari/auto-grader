@@ -3,63 +3,47 @@ import React, { SyntheticEvent, useRef, useState } from 'react';
 import Layout from "../layouts/layout";
 import CodeMirror from 'node_modules/@uiw/react-codemirror/cjs/index'; 
 import Link from 'node_modules/next/link';
-import * as fs from 'fs';
 import {join} from 'path';
-// import { exec, execFile, fork, spawn } from "child_process";
-import { execSync } from 'child_process';
+import {GetServerSideProps} from 'next'
+import { propTypes } from 'react-bootstrap/esm/Image';
+import { sendStatusCode } from 'next/dist/server/api-utils';
 
-export default function Coding() {
+
+export async function getServerSideProps(context) {
+    var originalStudentCode = context.query.studentCode;
+    
+    // return the grading result
+    // var studentResult = originalStudentCode;
+    
+    
+    console.log('student_code:' + originalStudentCode);
+    syncWriteFile(originalStudentCode);
+    // var studentResult = "mytest";
+    var studentResult = FileHandling();
+    console.log('grading result:' + studentResult)
+    return {
+        props: {
+            studentResult1: studentResult ?? {},
+        },
+    };
+}
+
+function Coding(props) {
 
     const [auth] = useState(true);
     const [message, setMessage] = useState('');
     const ref = useRef(null);
     const [inputCode, setCode] = useState('');
-    // var execSync = require('child_process').execSync;
-    function syncWriteFile(filename: string, data: any) {
-        /**
-         * flags:
-         *  - w = Open file for reading and writing. File is created if not exists
-         *  - a+ = Open file for reading and appending. The file is created if not exists
-         */
-        fs.writeFileSync(join(__dirname, filename), data, {
-          flag: 'w',
-        });
-      
-        const contents = fs.readFileSync(join(__dirname, filename), 'utf-8');
-        console.log(contents); // 👉️ "One Two Three Four"
-      
-        return contents;
-    }
-    // let {PythonShell} = require('python-shell')
-
-    
+    const router = useRouter();
+    console.log('js_get_data:'+ (typeof props.studentResult1))
 
     const submit = event => {
-        /*fs.writeFile('angel.py', 'hello~', 'utf8', (err) => {
-            if(err) {
-                console.log(err);
-            }
-        });
-
-        fs.writeFile('angel.py', 'hello~',  function(err) {
-            if (err) {
-                return console.error(err);
-            }
-        })
-
-        console.log(ref.current.value);*/
-        // setCode(ref.current.value);
-        // syncWriteFile('./angel.py', 'hello~');
-        
-        // const execProcess = exec('echo helloworld', { 'encoding': 'utf8' }, (error, stdout) => {
-        //     console.log(`exec stdout: ${stdout} error: ${error}`);
-        // });
-        // console.log('---exec spawn---');
-        // console.log(execProcess.spawnfile);
-        
-        const output = execSync('echo helloworld', { encoding: 'utf-8' });  // the default is 'buffer'
-        console.log(output);
-        setCode(output);
+        const studentCode = ref.current.value;
+ 
+        console.log('studentCode:' + studentCode)
+        router.push({
+            query: {studentCode: studentCode},
+        }, '/coding');
     }
 
     const handleKeyDown = ev => {
@@ -95,7 +79,7 @@ export default function Coding() {
             <h2 className="result-text">Result</h2>
             <div className="content-wrapper-result">
                 Result of your code: 
-                <div className="result-code-container">{inputCode}</div>
+                <div className="result-code-container">{props.studentResult1}</div>
             </div>
         </div>
         <div className="coding-field">
@@ -116,5 +100,56 @@ export default function Coding() {
       </Layout>)
 }
 
+function syncWriteFile(data: any) {
+    const fse = require('fs-extra');
+    fse.outputFile('tmp/submission.py', data)
+    .then((    ) => {
+        console.log('File has been saved');
+    })
+    .catch(err => {
+        console.error(err)
+    });
+}
+
+function FileHandling(){
+    const PythonShell = require('python-shell').PythonShell;
+
+    // var options = {
+    //     mode: 'text',
+    //     pythonPath: '',
+    //     pythonOptions: ['pylint'],
+    //     scriptPath: '/tmp',
+    //     args: ['value1']
+    // };
+    // var options = {
+    //     mode: 'text',
+    //     pythonPath: '',
+    //     scriptPath: './tmp'
+    // }
 
 
+    const runPy = async (code) => {
+        const options = {
+            mode: 'text',
+            pythonPath: '',
+            scriptPath: './tmp'
+        }
+     
+        // wrap it in a promise, and `await` the result
+        const result = await new Promise((resolve, reject) => {
+            var gradingResult = PythonShell.run('grading_student_code.py', options, function (err, results){
+                if(err){
+                    throw err;
+                }
+                console.log('results:', results[0]);
+                return results[0]
+            });
+        });
+        return result;
+     };
+
+    console.log('is it work?')
+    return runPy
+}
+
+export default Coding;
