@@ -8,6 +8,151 @@ import {GetServerSideProps} from 'next'
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { sendStatusCode } from 'next/dist/server/api-utils';
 
+export async function getServerSideProps(context) {
+    var originalStudentCode : string | undefined;
+    originalStudentCode = context.query.studentCode;
+
+    // return the grading result
+    // var studentResult = originalStudentCode;
+
+    // var studentResult = "mytest";
+    if (originalStudentCode) {
+        console.log('student_code:' + originalStudentCode);
+        syncWriteFile(originalStudentCode);
+        var studentResult = await FileHandling();
+        console.log('grading result:' + studentResult)
+        return {
+            props: {
+                studentResult1: studentResult ?? {},
+            },
+        };
+    }
+    // var studentResult = ''
+    return {
+        props: {
+            studentResult1: '' ?? {},
+        },
+    };
+}
+function Coding(props) {
+    const [auth] = useState(true);
+    const [message, setMessage] = useState('');
+    const ref = useRef(null);
+    const [inputCode, setCode] = useState('');
+    const router = useRouter();
+    console.log('js_get_data:'+ (typeof props.studentResult1))
+    const submit = event => {
+        const studentCode = ref.current.value;
+ 
+        console.log('studentCode:' + studentCode)
+        router.push({
+            query: {studentCode: studentCode},
+        }, '/coding');
+    }
+    const handleKeyDown = ev => {
+        if(ev.key == 'Tab') {
+            ev.preventDefault();
+            var start = ev.target.selectionStart;
+            var end = ev.target.selectionEnd;
+            ev.target.value = ev.target.value.substring(0, start) + '\t' + ev.target.value.substring(end);
+            ev.target.selectionStart = ev.target.selectionEnd = start + 1;
+        }
+    }
+    return (
+      <Layout auth={auth}>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"></link>
+        <div className="container-white"></div>
+        <div className="assignment-field">
+            <h2 className= "assignment-text">Assignment</h2>
+            <div className="content-wrapper">
+                <p className="paragraph-task">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut est hendrerit, scelerisque neque ut, mattis nulla. Sed ut aliquam tellus, eu accumsan orci. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec non urna vel tellus vestibulum malesuada. Etiam nisl dui, laoreet nec erat ut, consequat sagittis odio. Sed commodo gravida dignissim.</p>
+            </div>
+            <h2 className= "test-case-text">Test Case</h2>
+            <div className="content-wrapper-two">
+                <p className="test-case-task">
+                    Input your student ID: 2019313897
+                </p>
+                <p className="test-case-task">
+                    Output: Welcome, Student 2019313897!
+                </p>
+            </div>
+        </div>
+        <div className="result-field">
+            <h2 className="result-text">Result</h2>
+            <div className="content-wrapper-result">
+                Result of your code: 
+                <div className="result-code-container">{props.studentResult1}</div>
+            </div>
+        </div>
+        <div className="coding-field">
+            <h1>Insert your code</h1>
+            <textarea ref={ref} id="message" className="editing" onKeyDown={handleKeyDown}></textarea>
+            <pre id="highlighting" aria-hidden="true">
+                <code className="language-html" id="highlighting-content"></code>
+            </pre>
+            <button className="coding-button" type="submit" onClick={submit}>Submit</button>
+            </div>
+            <div className="back-button">
+                <Link href="/main"><i className="bi bi-arrow-left"></i></Link>
+            </div> 
+      
+        
+      </Layout>)
+}
+function syncWriteFile(data: any) {
+    const fse = require('fs-extra');
+    fse.outputFile('tmp/submission.py', data)
+    .then((    ) => {
+        console.log('File has been saved');
+    })
+    .catch(err => {
+        console.log('File has not been saved')
+        console.error(err)
+    });
+}
+async function FileHandling(){
+    const PythonShell = require('python-shell').PythonShell;
+
+    const options = {
+        mode: 'text',
+        pythonPath: '',
+        scriptPath: './tmp'
+    }
+    
+    // wrap it in a promise, and `await` the result
+    const { success , err = '', results } = await new Promise((resolve, reject) => {
+        PythonShell.run('grading_code.py', options, function (err, results) {
+            if(err) {
+                reject({ success: false, err});
+            }
+            //console.log('shell result:', results[0]);
+            console.log('shell result:', results);
+            resolve({success: true, results});
+        });
+        // return results[0]
+    });
+    console.log('is it work?');
+    if (!success) {
+        console.log('fail')
+        return;
+    }
+    //console.log('filehandling_result:' + results[0]);
+    console.log('filehandling_result: \n' + results);
+    //return results[0]
+    return results
+}
+export default Coding;
+
+/*import Router, { useRouter } from 'node_modules/next/router';
+import React, { SyntheticEvent, useRef, useState } from 'react';
+import Layout from "../layouts/layout";
+import CodeMirror from 'node_modules/@uiw/react-codemirror/cjs/index'; 
+import Link from 'node_modules/next/link';
+import {join} from 'path';
+import {GetServerSideProps} from 'next'
+import { propTypes } from 'react-bootstrap/esm/Image';
+import { sendStatusCode } from 'next/dist/server/api-utils';
+
 
 export async function getServerSideProps(context) {
     var originalStudentCode = context.query.studentCode;
@@ -18,15 +163,41 @@ export async function getServerSideProps(context) {
     
     console.log('student_code:' + originalStudentCode);
     syncWriteFile(originalStudentCode);
-    // var studentResult = "mytest";
-    var studentResult = FileHandling();
-    console.log('grading result:' + studentResult)
+    //var studentResult = "mytest";
+    //var studentResult = FileHandling();
+    console.log('grading result:' + originalStudentCode)
     return {
         props: {
-            studentResult1: studentResult ?? {},
+            studentResult1: originalStudentCode ?? {},
         },
     };
 }
+
+const {spawn} = require('child_process');
+
+const childPython = spawn('python', ['grading_code.py']);
+
+childPython.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+});
+
+childPython.stderr.on('data', (data) => {
+    console.error(`stderr: ${data}`);
+});
+
+childPython.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+});
+// export async function handler(req, res) {
+//     let python = spawn('python', ['grading_code.py']);
+//     let dataToSend = '';
+
+//     for await (const data of python.stdout){
+//     //console.log(data.toString());
+//         dataToSend += data.toString()
+//         }
+//     return res.status(200).json({ message: dataToSend})
+// }
 
 function Coding(props) {
 
@@ -38,6 +209,7 @@ function Coding(props) {
     console.log('js_get_data:'+ (typeof props.studentResult1))
 
     const submit = event => {
+
         const studentCode = ref.current.value;
  
         console.log('studentCode:' + studentCode)
@@ -78,7 +250,7 @@ function Coding(props) {
         <div className="result-field">
             <h2 className="result-text">Result</h2>
             <div className="content-wrapper-result">
-                Result of your code: 
+                Result of your code: {message}
                 <div className="result-code-container">{props.studentResult1}</div>
             </div>
         </div>
@@ -102,7 +274,7 @@ function Coding(props) {
 
 function syncWriteFile(data: any) {
     const fse = require('fs-extra');
-    fse.outputFile('tmp/submission.py', data)
+    fse.outputFile('submitted.py', data)
     .then((    ) => {
         console.log('File has been saved');
     })
@@ -111,8 +283,8 @@ function syncWriteFile(data: any) {
     });
 }
 
-function FileHandling(){
-    const PythonShell = require('python-shell').PythonShell;
+//function FileHandling(){
+  //  const PythonShell = require('python-shell').PythonShell;
 
     // var options = {
     //     mode: 'text',
@@ -128,11 +300,11 @@ function FileHandling(){
     // }
 
 
-    const runPy = async (code) => {
+    /*const runPy = async (code) => {
         const options = {
             mode: 'text',
             pythonPath: '',
-            scriptPath: './tmp'
+            scriptPath: '',
         }
      
         // wrap it in a promise, and `await` the result
@@ -149,7 +321,6 @@ function FileHandling(){
      };
 
     console.log('is it work?')
-    return runPy
-}
+    return runPy*/
 
-export default Coding;
+//export default Coding; 

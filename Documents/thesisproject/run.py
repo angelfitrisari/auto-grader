@@ -15,26 +15,26 @@ import json
 import ast
 from cognitive_complexity.api import get_cognitive_complexity
 
-process = os.popen('multimetric test.py')
+process = os.popen('multimetric submission.py')
 preprocessed = process.read()
 process.close
 
-process_two = os.popen('pylint test.py')
+process_two = os.popen('pylint submission.py')
 preprocessed_two = process_two.read()
 process_two.close
 
-process_three = os.popen('pydocstyle test.py')
+process_three = os.popen('pydocstyle submission.py')
 preprocessed_three = process_three.read()
 process_three.close
 
-process_four = os.popen('pylama -l test.py')
+process_four = os.popen('pylama -l submission.py')
 preprocessed_four = process_four.read()
 process_four.close
 
 #process2 =os.popen('gcc -E test.py').read()
 #process2.close
 
-with open('test.py', 'r') as f:
+with open('submission.py', 'r') as f:
     file_list = f.readlines()
 
 file_contents = ''.join(file_list)
