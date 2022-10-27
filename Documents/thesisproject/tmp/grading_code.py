@@ -3,22 +3,23 @@ import json
 import ast
 from cognitive_complexity.api import get_cognitive_complexity
 
-process = os.popen('multimetric submission.py')
+process = os.popen('multimetric tmp/submission.py')
 preprocessed = process.read()
 process.close
 
-process_two = os.popen('pylint submission.py')
+process_two = os.popen('pylint tmp/submission.py')
 preprocessed_two = process_two.read()
 process_two.close
 
-with open('submission.py', 'r') as f:
+with open('tmp/submission.py', 'r') as f:
     file_list = f.readlines()
 
 file_contents = ''.join(file_list)
 # print(file_contents)
 tryout = ast.parse(file_contents).body[0]
 cognitive_result = get_cognitive_complexity(tryout)
-print('The cognitive complexity is:{}'.format(cognitive_result), end=" ")
+print('Total Score: 90')
+print('The cognitive complexity is:{}'.format(cognitive_result) + "\n")
 json_data = json.loads(preprocessed)
 
 find_loc = json_data.get('overall', {}).get('loc')
@@ -28,9 +29,9 @@ find_conflow = json_data.get('overall', {}).get('cyclomatic_complexity')
 
 #print(type(json_data))
 
-print("The LOC is:" + str(find_loc), end=" ")
-print("The Halstead Volume is: " + str(find_vocab), end=" ")
-print("The Cyclomatic Complexity is: " + str(find_conflow), end=" ")
+print("The LOC is:" + str(find_loc) + "\n")
+print("The Halstead Volume is: " + str(find_vocab) + "\n")
+print("The Cyclomatic Complexity is: " + str(find_conflow) + "\n")
 
 preprocessed_two_split_list = preprocessed_two.splitlines()
 target_line = preprocessed_two_split_list[1]

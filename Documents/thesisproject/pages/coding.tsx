@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
         console.log('student_code:' + originalStudentCode);
         syncWriteFile(originalStudentCode);
         var studentResult = await FileHandling();
-        console.log('grading result:' + studentResult)
+        console.log('grading result: \n' + studentResult)
         return {
             props: {
                 studentResult1: studentResult ?? {},
@@ -65,15 +65,17 @@ function Coding(props) {
         <div className="assignment-field">
             <h2 className= "assignment-text">Assignment</h2>
             <div className="content-wrapper">
-                <p className="paragraph-task">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut est hendrerit, scelerisque neque ut, mattis nulla. Sed ut aliquam tellus, eu accumsan orci. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec non urna vel tellus vestibulum malesuada. Etiam nisl dui, laoreet nec erat ut, consequat sagittis odio. Sed commodo gravida dignissim.</p>
+                <p className="paragraph-task">Shivam is the youngest programmer in the world, he is just 12 years old. Shivam is learning programming and today he is writing his first program.
+The task is very simple: given two integers A and B, write a program to add these two numbers and output it.</p>
             </div>
             <h2 className= "test-case-text">Test Case</h2>
             <div className="content-wrapper-two">
                 <p className="test-case-task">
-                    Input your student ID: 2019313897
-                </p>
-                <p className="test-case-task">
-                    Output: Welcome, Student 2019313897!
+                    <strong>Input:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Output:</strong>
+                    <p>3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</p>
+                    <p>1 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;500</p>
+                    <p>100 200&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50</p>
+                    <p>10 40</p>
                 </p>
             </div>
         </div>
@@ -81,7 +83,7 @@ function Coding(props) {
             <h2 className="result-text">Result</h2>
             <div className="content-wrapper-result">
                 Result of your code: 
-                <div className="result-code-container">{props.studentResult1}</div>
+                <div className="result-code-container"><p>{props.studentResult1[0]}</p><p>{props.studentResult1[1]}</p><p>{props.studentResult1[2]}</p><p>{props.studentResult1[3]}</p><p>{props.studentResult1[4]}</p><p>{props.studentResult1[5]}</p></div>
             </div>
         </div>
         <div className="coding-field">
@@ -131,196 +133,20 @@ async function FileHandling(){
         });
         // return results[0]
     });
-    console.log('is it work?');
+    //console.log('is it work?');
     if (!success) {
         console.log('fail')
         return;
     }
     //console.log('filehandling_result:' + results[0]);
-    console.log('filehandling_result: \n' + results);
+    console.log('filehandling_result: ' + "\n");
+    for(let i = 0; i < results.length; i++){
+        console.log(results[i] + "\n")
+    }
     //return results[0]
+
+    var res_array = results;
+
     return results
 }
 export default Coding;
-
-/*import Router, { useRouter } from 'node_modules/next/router';
-import React, { SyntheticEvent, useRef, useState } from 'react';
-import Layout from "../layouts/layout";
-import CodeMirror from 'node_modules/@uiw/react-codemirror/cjs/index'; 
-import Link from 'node_modules/next/link';
-import {join} from 'path';
-import {GetServerSideProps} from 'next'
-import { propTypes } from 'react-bootstrap/esm/Image';
-import { sendStatusCode } from 'next/dist/server/api-utils';
-
-
-export async function getServerSideProps(context) {
-    var originalStudentCode = context.query.studentCode;
-    
-    // return the grading result
-    // var studentResult = originalStudentCode;
-    
-    
-    console.log('student_code:' + originalStudentCode);
-    syncWriteFile(originalStudentCode);
-    //var studentResult = "mytest";
-    //var studentResult = FileHandling();
-    console.log('grading result:' + originalStudentCode)
-    return {
-        props: {
-            studentResult1: originalStudentCode ?? {},
-        },
-    };
-}
-
-const {spawn} = require('child_process');
-
-const childPython = spawn('python', ['grading_code.py']);
-
-childPython.stdout.on('data', (data) => {
-    console.log(`stdout: ${data}`);
-});
-
-childPython.stderr.on('data', (data) => {
-    console.error(`stderr: ${data}`);
-});
-
-childPython.on('close', (code) => {
-    console.log(`child process exited with code ${code}`);
-});
-// export async function handler(req, res) {
-//     let python = spawn('python', ['grading_code.py']);
-//     let dataToSend = '';
-
-//     for await (const data of python.stdout){
-//     //console.log(data.toString());
-//         dataToSend += data.toString()
-//         }
-//     return res.status(200).json({ message: dataToSend})
-// }
-
-function Coding(props) {
-
-    const [auth] = useState(true);
-    const [message, setMessage] = useState('');
-    const ref = useRef(null);
-    const [inputCode, setCode] = useState('');
-    const router = useRouter();
-    console.log('js_get_data:'+ (typeof props.studentResult1))
-
-    const submit = event => {
-
-        const studentCode = ref.current.value;
- 
-        console.log('studentCode:' + studentCode)
-        router.push({
-            query: {studentCode: studentCode},
-        }, '/coding');
-    }
-
-    const handleKeyDown = ev => {
-        if(ev.key == 'Tab') {
-            ev.preventDefault();
-            var start = ev.target.selectionStart;
-            var end = ev.target.selectionEnd;
-            ev.target.value = ev.target.value.substring(0, start) + '\t' + ev.target.value.substring(end);
-            ev.target.selectionStart = ev.target.selectionEnd = start + 1;
-        }
-    }
-
-    return (
-      <Layout auth={auth}>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"></link>
-        <div className="container-white"></div>
-        <div className="assignment-field">
-            <h2 className= "assignment-text">Assignment</h2>
-            <div className="content-wrapper">
-                <p className="paragraph-task">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut est hendrerit, scelerisque neque ut, mattis nulla. Sed ut aliquam tellus, eu accumsan orci. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec non urna vel tellus vestibulum malesuada. Etiam nisl dui, laoreet nec erat ut, consequat sagittis odio. Sed commodo gravida dignissim.</p>
-            </div>
-            <h2 className= "test-case-text">Test Case</h2>
-            <div className="content-wrapper-two">
-                <p className="test-case-task">
-                    Input your student ID: 2019313897
-                </p>
-                <p className="test-case-task">
-                    Output: Welcome, Student 2019313897!
-                </p>
-            </div>
-        </div>
-        <div className="result-field">
-            <h2 className="result-text">Result</h2>
-            <div className="content-wrapper-result">
-                Result of your code: {message}
-                <div className="result-code-container">{props.studentResult1}</div>
-            </div>
-        </div>
-        <div className="coding-field">
-            <h1>Insert your code</h1>
-            <textarea ref={ref} id="message" className="editing" onKeyDown={handleKeyDown}></textarea>
-            <pre id="highlighting" aria-hidden="true">
-                <code className="language-html" id="highlighting-content"></code>
-            </pre>
-
-            <button className="coding-button" type="submit" onClick={submit}>Submit</button>
-            </div>
-
-            <div className="back-button">
-                <Link href="/main"><i className="bi bi-arrow-left"></i></Link>
-            </div> 
-      
-        
-      </Layout>)
-}
-
-function syncWriteFile(data: any) {
-    const fse = require('fs-extra');
-    fse.outputFile('submitted.py', data)
-    .then((    ) => {
-        console.log('File has been saved');
-    })
-    .catch(err => {
-        console.error(err)
-    });
-}
-
-//function FileHandling(){
-  //  const PythonShell = require('python-shell').PythonShell;
-
-    // var options = {
-    //     mode: 'text',
-    //     pythonPath: '',
-    //     pythonOptions: ['pylint'],
-    //     scriptPath: '/tmp',
-    //     args: ['value1']
-    // };
-    // var options = {
-    //     mode: 'text',
-    //     pythonPath: '',
-    //     scriptPath: './tmp'
-    // }
-
-
-    /*const runPy = async (code) => {
-        const options = {
-            mode: 'text',
-            pythonPath: '',
-            scriptPath: '',
-        }
-     
-        // wrap it in a promise, and `await` the result
-        const result = await new Promise((resolve, reject) => {
-            var gradingResult = PythonShell.run('grading_student_code.py', options, function (err, results){
-                if(err){
-                    throw err;
-                }
-                console.log('results:', results[0]);
-                return results[0]
-            });
-        });
-        return result;
-     };
-
-    console.log('is it work?')
-    return runPy*/
-
-//export default Coding; 

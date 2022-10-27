@@ -181,6 +181,7 @@
   background-color:#33444F;
   text-align: left;
   color: greenyellow;
+  white-space: pre-line;
 }
 
 .result-field {
@@ -245,13 +246,20 @@
 }
 
 .test-case-task{
+  margin: 5px;
   align-items: inherit;
   text-align: left;
 }
 
+.test-case-task p{
+  margin-bottom: 0;
+  padding-top: 0;
+}
+
 .paragraph-task{
-  align-items: center;
-  text-align: center;
+  position: absolute;
+  margin: 5px;
+  text-align: left;
 }
 
 .content-wrapper{
