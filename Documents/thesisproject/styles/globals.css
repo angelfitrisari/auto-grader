@@ -177,11 +177,29 @@
   left: 5.3%;
   width: 90%;
   height: 300px;
-  color: white;
   background-color:#33444F;
   text-align: left;
-  color: greenyellow;
   white-space: pre-line;
+}
+
+.collapse-container{
+  position: absolute;
+  top: 1%;
+  left: 2.5%;
+  width: 95%;
+  border-radius: 4pt;
+  height: 320px;
+  color: red;
+  background-color:#4E6671;
+  text-align: left;
+  white-space: pre-line;
+  font-size: 10pt;
+  padding: 10px;
+}
+
+.detail-btn{
+  position: absolute;
+  top: 4%;
 }
 
 .result-field {

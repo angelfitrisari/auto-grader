@@ -7,6 +7,7 @@ import {join} from 'path';
 import {GetServerSideProps} from 'next'
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { sendStatusCode } from 'next/dist/server/api-utils';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 export async function getServerSideProps(context) {
     var originalStudentCode : string | undefined;
@@ -61,34 +62,46 @@ function Coding(props) {
     return (
       <Layout auth={auth}>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"></link>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossOrigin="anonymous"></link>
         <div className="container-white"></div>
         <div className="assignment-field">
             <h2 className= "assignment-text">Assignment</h2>
             <div className="content-wrapper">
-                <p className="paragraph-task">Shivam is the youngest programmer in the world, he is just 12 years old. Shivam is learning programming and today he is writing his first program.
-The task is very simple: given two integers A and B, write a program to add these two numbers and output it.</p>
+                <p className="paragraph-task">There is a group of N friends who wish to enroll in a course together. The course has a maximum capacity of M students that can register for it. If there are K other students who have already enrolled in the course, determine if it will still be possible for all the N friends to do so or not.</p>
             </div>
             <h2 className= "test-case-text">Test Case</h2>
             <div className="content-wrapper-two">
                 <p className="test-case-task">
                     <strong>Input:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Output:</strong>
-                    <p>3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</p>
-                    <p>1 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;500</p>
-                    <p>100 200&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50</p>
-                    <p>10 40</p>
+                    <p>3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</p>
+                    <p>2 50 27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</p>
+                    <p>5 40 38&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</p>
+                    <p>100 100 0</p>
                 </p>
             </div>
         </div>
         <div className="result-field">
             <h2 className="result-text">Result</h2>
             <div className="content-wrapper-result">
-                Result of your code: 
-                <div className="result-code-container"><p>{props.studentResult1[0]}</p><p>{props.studentResult1[1]}</p><p>{props.studentResult1[2]}</p><p>{props.studentResult1[3]}</p><p>{props.studentResult1[4]}</p><p>{props.studentResult1[5]}</p></div>
+                Result of your code:
+                <p>
+                <a className="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Link with href
+                </a>
+                <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Button with data-bs-target
+                </button>
+                </p>
+                <div className="collapse" id="collapseExample">
+                <div className="card card-body">
+                    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                </div>
+                </div>          
             </div>
         </div>
         <div className="coding-field">
             <h1>Insert your code</h1>
-            <textarea ref={ref} id="message" placeholder="def func():" className="editing" onKeyDown={handleKeyDown}></textarea>
+            <textarea ref={ref} id="message" placeholder="please start your code with 'def func():'" className="editing" onKeyDown={handleKeyDown}></textarea>
             <pre id="highlighting" aria-hidden="true">
                 <code className="language-html" id="highlighting-content"></code>
             </pre>

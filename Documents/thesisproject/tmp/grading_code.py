@@ -18,7 +18,9 @@ file_contents = ''.join(file_list)
 # print(file_contents)
 tryout = ast.parse(file_contents).body[0]
 cognitive_result = get_cognitive_complexity(tryout)
-print('Total Score: 90')
+preprocessed_two_split_list = preprocessed_two.splitlines()
+target_line_two = preprocessed_two_split_list[7]
+print('Total score of your code: ', target_line_two)
 print('The cognitive complexity is:{}'.format(cognitive_result) + "\n")
 json_data = json.loads(preprocessed)
 
@@ -33,7 +35,8 @@ print("The LOC is:" + str(find_loc) + "\n")
 print("The Halstead Volume is: " + str(find_vocab) + "\n")
 print("The Cyclomatic Complexity is: " + str(find_conflow) + "\n")
 
-preprocessed_two_split_list = preprocessed_two.splitlines()
+
 target_line = preprocessed_two_split_list[1]
 target_line_split_list = target_line.split(':')
+
 print('linenum:{}, warning_id:{}, warning_message:{}'.format(target_line_split_list[1], target_line_split_list[3], target_line_split_list[4]))

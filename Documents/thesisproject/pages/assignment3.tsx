@@ -65,17 +65,16 @@ function Coding(props) {
         <div className="assignment-field">
             <h2 className= "assignment-text">Assignment</h2>
             <div className="content-wrapper">
-                <p className="paragraph-task">Shivam is the youngest programmer in the world, he is just 12 years old. Shivam is learning programming and today he is writing his first program.
-The task is very simple: given two integers A and B, write a program to add these two numbers and output it.</p>
+                <p className="paragraph-task">Chef has to travel to another place. For this, he can avail any one of two cab services. The first cab service charges X rupees. The second cab service charges Y rupees. Chef wants to spend the minimum amount of money. Which cab service should Chef take?</p>
             </div>
             <h2 className= "test-case-text">Test Case</h2>
             <div className="content-wrapper-two">
                 <p className="test-case-task">
                     <strong>Input:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Output:</strong>
-                    <p>3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</p>
-                    <p>1 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;500</p>
-                    <p>100 200&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50</p>
-                    <p>10 40</p>
+                    <p>3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIRST</p>
+                    <p>30 65&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANY</p>
+                    <p>42 42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SECOND</p>
+                    <p>90 50</p>
                 </p>
             </div>
         </div>
@@ -88,7 +87,7 @@ The task is very simple: given two integers A and B, write a program to add thes
         </div>
         <div className="coding-field">
             <h1>Insert your code</h1>
-            <textarea ref={ref} id="message" placeholder="def func():" className="editing" onKeyDown={handleKeyDown}></textarea>
+            <textarea ref={ref} id="message" placeholder="please start your code with 'def func():'" className="editing" onKeyDown={handleKeyDown}></textarea>
             <pre id="highlighting" aria-hidden="true">
                 <code className="language-html" id="highlighting-content"></code>
             </pre>

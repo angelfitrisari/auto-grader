@@ -15,26 +15,26 @@ import json
 import ast
 from cognitive_complexity.api import get_cognitive_complexity
 
-process = os.popen('multimetric submission.py')
+process = os.popen('multimetric test.py')
 preprocessed = process.read()
 process.close
 
-process_two = os.popen('pylint submission.py')
+process_two = os.popen('pylint test.py')
 preprocessed_two = process_two.read()
 process_two.close
 
-process_three = os.popen('pydocstyle submission.py')
+process_three = os.popen('pydocstyle test.py')
 preprocessed_three = process_three.read()
 process_three.close
 
-process_four = os.popen('pylama -l submission.py')
+process_four = os.popen('pylama -l test.py')
 preprocessed_four = process_four.read()
 process_four.close
 
 #process2 =os.popen('gcc -E test.py').read()
 #process2.close
 
-with open('submission.py', 'r') as f:
+with open('test.py', 'r') as f:
     file_list = f.readlines()
 
 file_contents = ''.join(file_list)
@@ -56,16 +56,18 @@ print("The LOC is: " + str(find_loc))
 print("The Halstead Volume is: " + str(find_vocab))
 print("The Cyclomatic Complexity is: " + str(find_conflow))
 #print("The Data Flow Complexity is: " + find_dataflow)
-print('=======')
+print('============================== from here it is pylint======================================')
 print(preprocessed_two)
 
 preprocessed_two_split_list = preprocessed_two.splitlines()
 target_line = preprocessed_two_split_list[1]
 target_line_split_list = target_line.split(':')
+target_line_two = preprocessed_two_split_list[8]
+print('This is the total score from pylint: {}', target_line_two)
 print('linenum:{}, warning_id:{}, warning_message:{}'.format(target_line_split_list[1], target_line_split_list[3], target_line_split_list[4]))
 
 
-print('======= from here this is pydocstyle')
+print('===================================== from here this is pydocstyle=======================')
 print(preprocessed_three)
 
 preprocessed_three_split_list = preprocessed_three.splitlines()
@@ -75,7 +77,7 @@ print("Warning Code:" + str(target_line_split_list_three[0]))
 print("Warning Message:" + str(target_line_split_list_three[1]))
 # print(preprocessed_two.splitlines())
 
-print('======= from here this is pylama')
+print('=========================from here this is pylama===============================')
 print(preprocessed_four)
 
 preprocessed_four_split_list = preprocessed_four.splitlines()

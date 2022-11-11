@@ -67,7 +67,7 @@ export default function Main() {
                       <p>Yes</p>
                     </td>
 
-                    <td className="View"><a href="/coding">View</a></td>
+                    <td className="View"><a href="/assignment1">View</a></td>
 
                     </tr>
 
@@ -90,7 +90,7 @@ export default function Main() {
                       <p>No</p>
                     </td>
 
-                    <td className="View"><a href="/coding">View</a></td>
+                    <td className="View"><a href="/assignment2">View</a></td>
 
                     </tr>
 
@@ -113,7 +113,7 @@ export default function Main() {
                       <p>No</p>
                     </td>
 
-                    <td className="View"><a href="/coding">View</a></td>
+                    <td className="View"><a href="/assignment3">View</a></td>
 
                     </tr>
 
@@ -136,7 +136,7 @@ export default function Main() {
                       <p>Yes</p>
                     </td>
 
-                    <td className="View"><a href="/coding">View</a></td>
+                    <td className="View"><a href="/assignment4">View</a></td>
 
                     </tr>
 
