@@ -7,6 +7,10 @@ import {join} from 'path';
 import {GetServerSideProps} from 'next'
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { sendStatusCode } from 'next/dist/server/api-utils';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 export async function getServerSideProps(context) {
     var originalStudentCode : string | undefined;
@@ -58,6 +62,11 @@ function Coding(props) {
             ev.target.selectionStart = ev.target.selectionEnd = start + 1;
         }
     }
+
+    // var data1 = (props.studentResult[1]);
+    // var d1 = parseInt(data1);
+    // console.log(typeof(d1));
+
     return (
       <Layout auth={auth}>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"></link>
@@ -84,7 +93,21 @@ Given that the battery level of Chef's phone is X%, determine whether it would s
             <h2 className="result-text">Result</h2>
             <div className="content-wrapper-result">
                 Result of your code: 
-                <div className="result-code-container"><p>{props.studentResult1[0]}</p><p>{props.studentResult1[1]}</p><p>{props.studentResult1[2]}</p><p>{props.studentResult1[3]}</p><p>{props.studentResult1[4]}</p><p>{props.studentResult1[5]}</p></div>
+                <div className="result-code-container">
+                <Tabs
+                    defaultActiveKey="profile"
+                    id="uncontrolled-tab-example"
+                    className="mb-2"
+                >
+                <Tab eventKey="home" title="Total Score">
+                    <p>{props.studentResult1[0]}</p>
+                </Tab>
+                <Tab eventKey="profile" title="More Details">
+                    <p>Cognitive Complexity: <ProgressBar now={props.studentResult1[1]}/></p><p> LOC: <ProgressBar now={props.studentResult1[2]}/></p><p>Halstead Volume: <ProgressBar now={props.studentResult1[3]}/></p><p>Cyclomatic Complexity: <ProgressBar now={props.studentResult1[4]}/></p><p>{props.studentResult1[5]}</p>
+                </Tab>
+                </Tabs>
+                </div>
+                    
             </div>
         </div>
         <div className="coding-field">

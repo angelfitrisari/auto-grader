@@ -21,9 +21,10 @@ cognitive_result = get_cognitive_complexity(tryout)
 preprocessed_two_split_list = preprocessed_two.splitlines()
 target_line_two = preprocessed_two_split_list[7]
 print('Total score of your code: ', target_line_two)
-print('The cognitive complexity is:{}'.format(cognitive_result) + "\n")
+#print(target_line_two)
+#print('The cognitive complexity is:{}'.format(cognitive_result) + "\n")
+print(format(cognitive_result))
 json_data = json.loads(preprocessed)
-
 find_loc = json_data.get('overall', {}).get('loc')
 find_vocab = json_data.get('overall', {}).get('halstead_volume')
 find_conflow = json_data.get('overall', {}).get('cyclomatic_complexity')
@@ -31,9 +32,12 @@ find_conflow = json_data.get('overall', {}).get('cyclomatic_complexity')
 
 #print(type(json_data))
 
-print("The LOC is:" + str(find_loc) + "\n")
-print("The Halstead Volume is: " + str(find_vocab) + "\n")
-print("The Cyclomatic Complexity is: " + str(find_conflow) + "\n")
+#print("The LOC is:" + str(find_loc) + "\n")
+print(str(find_loc))
+#print("The Halstead Volume is: " + str(find_vocab) + "\n")
+print(str(find_vocab))
+#print("The Cyclomatic Complexity is: " + str(find_conflow) + "\n")
+print(str(find_conflow))
 
 
 target_line = preprocessed_two_split_list[1]

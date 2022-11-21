@@ -8,6 +8,7 @@ import {GetServerSideProps} from 'next'
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { sendStatusCode } from 'next/dist/server/api-utils';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export async function getServerSideProps(context) {
     var originalStudentCode : string | undefined;
