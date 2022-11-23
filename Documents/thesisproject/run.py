@@ -62,7 +62,11 @@ print(preprocessed_two)
 preprocessed_two_split_list = preprocessed_two.splitlines()
 target_line = preprocessed_two_split_list[1]
 target_line_split_list = target_line.split(':')
-target_line_two = preprocessed_two_split_list[8]
+#target_line_two = preprocessed_two_split_list[8]
+target_line_two = 'Your code'
+result_test = list(filter(lambda x: x.startswith(target_line_two), preprocessed_two_split_list))
+result_test = list(filter(lambda x: target_line_two in x, preprocessed_two_split_list))
+print('This is a test:', result_test)
 print('This is the total score from pylint: {}', target_line_two)
 print('linenum:{}, warning_id:{}, warning_message:{}'.format(target_line_split_list[1], target_line_split_list[3], target_line_split_list[4]))
 

@@ -4,6 +4,16 @@ import Link from "node_modules/next/link";
 import { useRouter } from 'node_modules/next/router';
 import { cp } from 'fs';
 import { useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Image from "next/image";
+// import Image from 'react-bootstrap/Image'
+import logoImg from "../pictures/logo.png";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const Layout = (props) => {
 
@@ -22,48 +32,82 @@ const Layout = (props) => {
 
     if(!props.auth) {
         menu = (
-            <ul className="navbar-nav me-auto mb-2 mb-md-0">
-                <li className="nav-item">
-                    <Link href="/login">
-                        <a className="nav-link active" style={{color: "black"}}>Log In</a>
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link href="/register">
-                        <a className="nav-link active" style={{color: "black"}}>Register</a>
-                    </Link>   
-                </li>
-            </ul>
+            <div>
+                <Navbar className="px-1" bg="light">
+                    <Container>
+                    <Navbar.Brand href="/">
+                        <Row>
+                            <Col>
+                                <Image src={logoImg} alt="test" width={30} height={30}/>
+                            </Col>
+                            <Col>
+                                Auto-Grader
+                            </Col>
+                        </Row>
+                    </Navbar.Brand>
+                    
+                        <Nav className="py-2 px-4 justify-content-end">
+                            <Nav.Link className="px-2 pe-4" href="/login">Log in</Nav.Link>
+                            <Button variant="dark" href="/register">Register</Button>{' '}
+                        </Nav>
+                    </Container>
+                </Navbar>
+            </div>
             )
         } else {
             menu = (
-                <ul className="navbar-nav me-auto mb-2 mb-md-0">
-                <li className="nav-item">
-                        <a href="#" className="nav-link active" onClick={logout} style={{color: "black"}}>Logout</a>
-                </li>
-            </ul>
+                <div>
+                    <Navbar className="px-1" bg="light">
+                        <Container>
+                        <Navbar.Brand href="/">
+                        <Row>
+                            <Col>
+                                <Image src={logoImg} alt="test" width={30} height={30}/>
+                            </Col>
+                            <Col>
+                                Auto-Grader
+                            </Col>
+                        </Row>
+                        </Navbar.Brand>
+                            <Nav className="py-2 px-4 justify-content-end">
+                                <Nav.Link className="px-2 pe-4" href="/main">Assignment</Nav.Link>
+                                <Button variant="dark" href="#" onClick={logout}>Log out</Button>{' '}
+                            </Nav>
+                        </Container>
+                    </Navbar>
+                </div>
             )
         }
 
     return (
             <>
-                <Head>
-                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossOrigin="anonymous"></link>
-                </Head>
-
-                <nav className="navbar navbar-expand-md navbar-dark bg-light mb-4">
-                    <div className="container-fluid">
-                        
-
-                        <div>
-                           {menu}
-                        </div>
+                <nav className=''>
+                    <div>
+                        {menu}
                     </div>
                 </nav>
 
-                <main className="form-signin w-100 m-auto">
+                <main>
                    {props.children}
                 </main>
+
+                <div className='mt-20 p-20 flex flex-row justify-center bg-slate-100'>
+                    <div className='w-5/6'>
+                        <div className='mb-4 text-2xl text-slate-700'>
+                            Auto-Grader
+                        </div>
+                        <div className='mb-4 text-xl text-slate-500'>
+                            Project Owner: Angel Fitri Sari<br></br>
+                            Advisor: Jinseok Heo
+                        </div>
+                        <div className='mb-4 text-xl text-slate-500'>
+                            Powered By NEXT.JS / React Bootstrap / Tailwindcss / flaticon / freepik
+                        </div>
+                        <div className='text-xl text-slate-500'>
+                            @Copyright 2022. Angel Fitri Sari. All rights reserved.
+                        </div>
+                    </div>
+                </div>
             </> 
     );
 };

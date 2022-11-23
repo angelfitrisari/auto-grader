@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.form-signin {
+/* .form-signin {
   max-width: 330px;
   padding: 15px;
 }
@@ -377,7 +377,6 @@
 }
 
 .editing {
-  /* Both elements need the same text and space styling so they are directly on top of each other */
   border: 4;
   width: calc(100% - 13px);
   height: 400px;
@@ -557,4 +556,4 @@ tbody tr td{
 .adding-button:hover{
   background-color: darkblue;
   color: white;
-}
+} */

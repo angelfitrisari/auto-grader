@@ -7,6 +7,11 @@ import {join} from 'path';
 import {GetServerSideProps} from 'next'
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { sendStatusCode } from 'next/dist/server/api-utils';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 export async function getServerSideProps(context) {
     var originalStudentCode : string | undefined;
@@ -59,44 +64,124 @@ function Coding(props) {
         }
     }
     return (
-      <Layout auth={auth}>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"></link>
-        <div className="container-white"></div>
-        <div className="assignment-field">
-            <h2 className= "assignment-text">Assignment</h2>
-            <div className="content-wrapper">
-                <p className="paragraph-task">Chef is watching TV. The current volume of the TV is X. Pressing the volume up button of the TV remote increases the volume by 11 while pressing the volume down button decreases the volume by 11. Chef wants to change the volume from X to Y. Find the minimum number of button presses required to do so.</p>
+        <Layout auth={auth}>
+        <div className='p-4 flex flex-row justify-center'>
+            <div className='w-1/5'>
+                <div className='p-2 mb-40'>
+                    <p className='font-serif text-4xl'>
+                        Introduction of CS
+                    </p>
+                    <p className='text-xl'>
+                        Chef is watching TV. The current volume of the TV is X. Pressing the volume up button of the TV remote increases the volume by 11 while pressing the volume down button decreases the volume by 11. Chef wants to change the volume from X to Y. Find the minimum number of button presses required to do so.
+                    </p>
+                </div>
+
+                <div className='p-2 mb-40'>
+                    <p className='font-serif text-3xl'>
+                        Test Case
+                    </p>
+                    <div className='p-2'>
+                        <table className='w-11/12 '>
+                            <thead className='bg-black text-white'>
+                                <tr>
+                                    <th>
+                                        <p className='p-2 text-center font-xl font-serif tracking-wider'>
+                                            Input
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p className='p-2 text-center font-xl font-serif tracking-wider'>
+                                            Output
+                                        </p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className='border-t border-black'>
+                                    <th>
+                                        <p className='p-2 text-center font-xl'>
+                                            2
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p className='p-2 text-center font-xl'>
+                                            4
+                                        </p>
+                                    </th>
+                                </tr>
+                                <tr className='border-t border-black bg-slate-100'>
+                                    <th>
+                                    <p className='p-2 text-center font-xl'>
+                                            50 54
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p className='p-2 text-center font-xl'>
+                                            2
+                                        </p>
+                                    </th>
+                                </tr>
+                                <tr className='border-t border-black'>
+                                    <th>
+                                    <p className='p-2 text-center font-xl'>
+                                            12 10
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p className='p-2 text-center font-xl'>
+                                            
+                                        </p>
+                                    </th>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <h2 className= "test-case-text">Test Case</h2>
-            <div className="content-wrapper-two">
-                <p className="test-case-task">
-                    <strong>Input:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Output:</strong>
-                    <p>2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4</p>
-                    <p>50 54&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2</p>
-                    <p>12 10</p>
-                </p>
+            <div className='px-20 w-1/2'>
+                <div className='content-center mb-10'>
+                    <p className='font-serif text-4xl'>
+                        Your Code
+                    </p>
+                </div>
+                <div className="coding-field h-4/6 mb-10 flex justify-center">
+                    <textarea ref={ref} id="message" placeholder="please start your code with 'def func():'" className="editing w-full h-full" onKeyDown={handleKeyDown}></textarea>
+                    <pre id="highlighting" aria-hidden="true">
+                        <code className="language-html" id="highlighting-content"></code>
+                    </pre>
+                </div>
+                <div className='flex justify-end'>
+                    <button className="rounded-full bg-blue-700 py-1 px-4 font-serif text-white text-xl hover:bg-blue-800" type="submit" onClick={submit}>Submit</button>
+                </div>
+            </div>
+            <div className='px-10 w-1/5'>
+                <div className='mb-10'>
+                    <p className='font-serif text-4xl'>
+                        Result
+                    </p>
+                </div>
+                <div>
+                <Tabs
+                    defaultActiveKey="profile"
+                    id="uncontrolled-tab-example"
+                    className="mb-3"
+                    >
+                    <Tab eventKey="score" title="Score">
+                        <div className='p-2'>
+                            <p>{props.studentResult1[0]}</p>
+                        </div>
+                    </Tab>
+                    <Tab eventKey="detail" title="Detail">
+                        <div className='p-2'>
+                            <p>Cognitive Complexity: <ProgressBar now={props.studentResult1[1]}/></p><p> LOC: <ProgressBar now={props.studentResult1[2]}/></p><p>Halstead Volume: <ProgressBar now={props.studentResult1[3]}/></p><p>Cyclomatic Complexity: <ProgressBar now={props.studentResult1[4]}/></p><p>{props.studentResult1[5]}</p>
+                        </div>
+                    </Tab>
+
+                </Tabs>
+                </div>
             </div>
         </div>
-        <div className="result-field">
-            <h2 className="result-text">Result</h2>
-            <div className="content-wrapper-result">
-                Result of your code: 
-                <div className="result-code-container"><p>{props.studentResult1[0]}</p><p>{props.studentResult1[1]}</p><p>{props.studentResult1[2]}</p><p>{props.studentResult1[3]}</p><p>{props.studentResult1[4]}</p><p>{props.studentResult1[5]}</p></div>
-            </div>
-        </div>
-        <div className="coding-field">
-            <h1>Insert your code</h1>
-            <textarea ref={ref} id="message" placeholder="please start your code with 'def func():'" className="editing" onKeyDown={handleKeyDown}></textarea>
-            <pre id="highlighting" aria-hidden="true">
-                <code className="language-html" id="highlighting-content"></code>
-            </pre>
-            <button className="coding-button" type="submit" onClick={submit}>Submit</button>
-            </div>
-            <div className="back-button">
-                <Link href="/main"><i className="bi bi-arrow-left"></i></Link>
-            </div> 
-      
-        
       </Layout>)
 }
 function syncWriteFile(data: any) {

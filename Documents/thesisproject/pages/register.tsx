@@ -11,10 +11,10 @@ const Register = () => {
 
     const submit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        
+
         await fetch('http://localhost:8000/api/register', {
             method: "POST",
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 name,
                 email,
@@ -27,26 +27,28 @@ const Register = () => {
 
     return (
         <Layout>
-            <style>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"></link>
-                @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-                {'body { background-color: #F5F9FA; }'}
-            </style>
-            <div className="half-color">
-            <h1 className="title-account-text">Register Your Account</h1>
+            <div className='py-60 bg-gradient-to-r from-cyan-500/70 to-sky-800/70 text-center'>
+                <p className='text-4xl font-serif tracking-widest text-white'>
+                    Register Your Account
+                </p>
             </div>
-            <div className="form-container">
+            <div className="py-5 form-container flex justify-center">
                 <form onSubmit={submit}>
-                    <input className="form-control" placeholder="Full Name" required onChange={e => setName(e.target.value)}/>               
-                    <input className="form-control" placeholder="Email" required onChange={e => setEmail(e.target.value)}/>
-                    <input type ="password" className="form-control" placeholder="Password" required onChange={e => setPassword(e.target.value)}/>
-                    <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+                    <div className='m-8 flex justify-center'>
+                        <input type="text" className="rounded-full" placeholder="Full Name" required onChange={e => setName(e.target.value)} />
+                    </div>
+                    <div className='m-8 flex justify-center'>
+                        <input type="email" className="rounded-full" placeholder="Email" required onChange={e => setEmail(e.target.value)} />
+                    </div>
+                    <div className='m-8 flex justify-center'>
+                        <input type="password" className="rounded-full" placeholder="Password" required onChange={e => setPassword(e.target.value)} />
+                    </div>
+                    <div className='m-8 flex justify-center'>
+                        <button className="px-6 py-2 rounded-full font-serif bg-black text-white tracking-widest hover:bg-slate-600" type="submit">Register</button>
+                    </div>
                 </form>
             </div>
-            <div className="back-button">
-                <Link href="/"><i className="bi bi-arrow-left"></i></Link>
-            </div> 
-            
+
         </Layout>
     );
 };

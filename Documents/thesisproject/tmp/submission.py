@@ -1,7 +1,6 @@
-def test1():
-    a = 3
+def printme():
+   print("Hello there!")
+   print("This is the presentation!")
 
-    for i in range(1, 35):
-        print(a)
-        if i > 2:
-            break
+# Now you can call printme function
+printme()

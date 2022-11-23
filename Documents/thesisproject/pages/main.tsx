@@ -13,187 +13,137 @@ export default function Main() {
 
     return(
       <Layout auth={auth}>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"></link>
-        <div className="main-content-container">
-          <h3 className="i-name">Dashboard</h3>
-          <div className="content-values">
-            <div className="value-field">
-              <i className="bi bi-code-square"></i>
-                <div>
-                  <h3>Assignments</h3>
-                  <span>Current Codes</span>
-                </div>
-              </div>
-              <div className="value-field">
-              <i className="bi bi-code-square"></i>
-              <div>
-                <h3>Performances</h3>
-                <span>History</span>
-              </div>
-              </div>
-            </div>
-
-            <button className="adding-button">
-              <i className="bi bi-plus-square-fill">Add Assignment</i>
-            </button>
-
-            <div className="board-container">
-                <table width="100%">
-                  <thead>
-                    <tr>
-                      <td>Date</td>
-                      <td>Assignment Name</td>
-                      <td>Checked</td>
-                      <td></td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-
-                    <td className="date-column">
-                      <div className="date-value">
-                        <h5>2022/09/25</h5>
-                      </div>
-                    </td>
-
-                    <td className="assignment-column">
-                      <div className="assignment-value">
-                        <h5>Assignment 1</h5>
-                        <p>Introduction to Computer Engineering</p>
-                      </div>
-                    </td>
-
-                    <td className="checked-column">
-                      <p>Yes</p>
-                    </td>
-
-                    <td className="View"><a href="/assignment1">View</a></td>
-
-                    </tr>
-
-                    <tr>
-
-                    <td className="date-column">
-                      <div className="date-value">
-                        <h5>2022/09/26</h5>
-                      </div>
-                    </td>
-
-                    <td className="assignment-column">
-                      <div className="assignment-value">
-                        <h5>Assignment 2</h5>
-                        <p>Basis and Practice in Programming</p>
-                      </div>
-                    </td>
-
-                    <td className="checked-column">
-                      <p>No</p>
-                    </td>
-
-                    <td className="View"><a href="/assignment2">View</a></td>
-
-                    </tr>
-
-                    <tr>
-
-                    <td className="date-column">
-                      <div className="date-value">
-                        <h5>2022/09/26</h5>
-                      </div>
-                    </td>
-
-                    <td className="assignment-column">
-                      <div className="assignment-value">
-                        <h5>Assignment 3</h5>
-                        <p>Computer Programming for Engineers</p>
-                      </div>
-                    </td>
-
-                    <td className="checked-column">
-                      <p>No</p>
-                    </td>
-
-                    <td className="View"><a href="/assignment3">View</a></td>
-
-                    </tr>
-
-                    <tr>
-
-                    <td className="date-column">
-                      <div className="date-value">
-                        <h5>2022/09/30</h5>
-                      </div>
-                    </td>
-
-                    <td className="assignment-column">
-                      <div className="assignment-value">
-                        <h5>Assignment 4</h5>
-                        <p>Problem Solving and Techniques</p>
-                      </div>
-                    </td>
-
-                    <td className="checked-column">
-                      <p>Yes</p>
-                    </td>
-
-                    <td className="View"><a href="/assignment4">View</a></td>
-
-                    </tr>
-
-                    
-                  </tbody>
-                </table>
-            </div>
+        <div className='px-52 py-20 flex flex-col justify-center'>
+          <div className='px-10 mb-20 text-5xl font-serif tracking-wide'>
+            Assignments
           </div>
-        
+          <div className='content-center'>
+            <table className='border-collapse border-spacing-4 shadow-md w-11/12'>
+              <thead className='w-screen'>
+                <tr className='bg-black text-white border-separate text-middle'>
+                  <th className='w-1/12 content-center'>
+                    <p className='p-4 text-center text-2xl font-serif'>
+                      ID
+                    </p>
+                  </th>
+                  <th className='w-2/5'>
+                    <p className='p-4 text-center text-2xl font-serif'>
+                    Title
+                    </p>
+                  </th>
+                  <th className='w-1/6'>
+                    <p className='p-4 text-center text-2xl font-serif'>
+                    Date
+                    </p>
+                  </th>
+                  <th className='w-1/6'>
+                    <p className='p-4 text-center text-2xl font-serif'>
+                      Solved
+                    </p>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <p className='text-center text-xl'>
+                      1
+                    </p>
+                  </td>
+                  <td className='border-spacing-32'>
+                    <p className='p-4 text-left text-xl'>
+                      <a href="/assignment1" className='visited:text-black'>
+                        Introduction to Computer Engineering
+                      </a>
+                    </p>
+                  </td>
+                  <td>
+                    <p className='text-center text-xl'>
+                    2022/09/25
+                    </p>
+                  </td>
+                  <td>
+                    <p className='text-center text-xl'>
+                    Yes
+                    </p>
+                  </td>
+                </tr>
+                <tr className='bg-slate-100'>
+                  <td>
+                    <p className='text-center text-xl'>
+                      2
+                    </p>
+                  </td>
+                  <td>
+                    <p className='p-4 text-left text-xl'>
+                      <a href="/assignment2" className='visited:text-black'>
+                        Basis and Practice in Programming
+                      </a>
+                    </p>
+                  </td>
+                  <td>
+                    <p className='text-center text-xl'>
+                    2022/09/25
+                    </p>
+                  </td>
+                  <td>
+                    <p className='text-center text-xl'>
+                    Yes
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p className='text-center text-xl'>
+                      3
+                    </p>
+                  </td>
+                  <td>
+                    <p className='p-4 text-left text-xl'>
+                      <a href="/assignment3" className='visited:text-black'>
+                        Computer Programming for Engineers
+                      </a>
+                    </p>
+                  </td>
+                  <td>
+                    <p className='text-center text-xl'>
+                      2022/09/25
+                    </p>
+                  </td>
+                  <td>
+                    <p className='text-center text-xl'>
+                      No
+                    </p>
+                  </td>
+                </tr>
+                <tr className='bg-slate-100'>
+                  <td>
+                    <p className='text-center text-xl'>
+                      4
+                    </p>
+                  </td>
+                  <td>
+                    <p className='p-4 text-left text-xl text-black'>
+                      <a href="/assignment4" className='visited:text-black'>
+                        Problem Solving and Techniques
+                      </a>
+                    </p>
+                  </td>
+                  <td>
+                    <p className='text-center text-xl'>
+                      2022/09/25
+                    </p>
+                  </td>
+                  <td>
+                    <p className='text-center text-xl'>
+                      No
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </Layout>
     )
-      
-/*
-    return (
-      <Layout auth={auth}>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"></link>
-        <div className="dashboard-title">
-          <h1>Auto Grader Dashboard</h1>
-        </div>
-            <div className="grid-layout">
-              <div className="box-style" onClick={handleClick}>
-                <div className="box-color">
-                </div>
-                This is the first assignment.
-                <i className="bi bi-trash-fill"></i>
-              </div>
-              <div className="box-style" onClick={handleClick}>
-                <div className="box-color">
-                </div>
-                This is the second assignment.
-                <i className="bi bi-trash-fill"></i>
-              </div>
-              <div className="box-style" onClick={handleClick}>
-                <div className="box-color">
-                </div>
-                This is the third assignment.
-                <i className="bi bi-trash-fill"></i>
-              </div>
-              <div className="box-style" onClick={handleClick}>
-                <div className="box-color">
-                </div>
-                This is the fourth assignment.
-                <i className="bi bi-trash-fill"></i>
-              </div>
-              <div className="box-style" onClick={handleClick}>
-                <div className="box-color">
-                </div>
-                This is the fifth assignment.
-                <i className="bi bi-trash-fill"></i>
-              </div>
-              <div className="box-style">
-                <div className="box-color">
-                </div>
-                This is the sixth assignment.
-                <i className="bi bi-trash-fill"></i>
-              </div>
-            </div>
-      </Layout>
-    );*/
 }

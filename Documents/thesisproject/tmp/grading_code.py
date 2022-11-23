@@ -19,8 +19,13 @@ file_contents = ''.join(file_list)
 tryout = ast.parse(file_contents).body[0]
 cognitive_result = get_cognitive_complexity(tryout)
 preprocessed_two_split_list = preprocessed_two.splitlines()
-target_line_two = preprocessed_two_split_list[7]
-print('Total score of your code: ', target_line_two)
+#target_line_two = preprocessed_two_split_list[7]
+target_line_two = 'Your code'
+result_test = list(filter(lambda x: x.startswith(target_line_two), preprocessed_two_split_list))
+result_test = list(filter(lambda x: target_line_two in x, preprocessed_two_split_list))
+#print('This is a test:', result_test)
+#print('Length of array: ', len(preprocessed_two_split_list))
+print('Total score of your code: ', result_test)
 #print(target_line_two)
 #print('The cognitive complexity is:{}'.format(cognitive_result) + "\n")
 print(format(cognitive_result))

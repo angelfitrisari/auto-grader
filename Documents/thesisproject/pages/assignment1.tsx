@@ -9,6 +9,9 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 import { sendStatusCode } from 'next/dist/server/api-utils';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 export async function getServerSideProps(context) {
     var originalStudentCode : string | undefined;
@@ -61,58 +64,124 @@ function Coding(props) {
         }
     }
     return (
-      <Layout auth={auth}>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"></link>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossOrigin="anonymous"></link>
-        <div className="container-white"></div>
-        <div className="assignment-field">
-            <h2 className= "assignment-text">Assignment</h2>
-            <div className="content-wrapper">
-                <p className="paragraph-task">There is a group of N friends who wish to enroll in a course together. The course has a maximum capacity of M students that can register for it. If there are K other students who have already enrolled in the course, determine if it will still be possible for all the N friends to do so or not.</p>
-            </div>
-            <h2 className= "test-case-text">Test Case</h2>
-            <div className="content-wrapper-two">
-                <p className="test-case-task">
-                    <strong>Input:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Output:</strong>
-                    <p>3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</p>
-                    <p>2 50 27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</p>
-                    <p>5 40 38&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</p>
-                    <p>100 100 0</p>
-                </p>
-            </div>
-        </div>
-        <div className="result-field">
-            <h2 className="result-text">Result</h2>
-            <div className="content-wrapper-result">
-                Result of your code:
-                <p>
-                <a className="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Link with href
-                </a>
-                <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Button with data-bs-target
-                </button>
-                </p>
-                <div className="collapse" id="collapseExample">
-                <div className="card card-body">
-                    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+        <Layout auth={auth}>
+        <div className='p-4 flex flex-row justify-center'>
+            <div className='w-1/5'>
+                <div className='p-2 mb-40'>
+                    <p className='font-serif text-4xl'>
+                        Introduction of CS
+                    </p>
+                    <p className='text-xl'>
+                        There is a group of N friends who wish to enroll in a course together. The course has a maximum capacity of M students that can register for it. If there are K other students who have already enrolled in the course, determine if it will still be possible for all the N friends to do so or not.
+                    </p>
                 </div>
-                </div>          
+
+                <div className='p-2 mb-40'>
+                    <p className='font-serif text-3xl'>
+                        Test Case
+                    </p>
+                    <div className='p-2'>
+                        <table className='w-11/12 '>
+                            <thead className='bg-black text-white'>
+                                <tr>
+                                    <th>
+                                        <p className='p-2 text-center font-xl font-serif tracking-wider'>
+                                            Input
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p className='p-2 text-center font-xl font-serif tracking-wider'>
+                                            Output
+                                        </p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className='border-t border-black'>
+                                    <th>
+                                        <p className='p-2 text-center font-xl'>
+                                            3
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p className='p-2 text-center font-xl'>
+                                            Yes
+                                        </p>
+                                    </th>
+                                </tr>
+                                <tr className='border-t border-black bg-slate-100'>
+                                    <th>
+                                    <p className='p-2 text-center font-xl'>
+                                            2 50 27
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p className='p-2 text-center font-xl'>
+                                            No
+                                        </p>
+                                    </th>
+                                </tr>
+                                <tr className='border-t border-black'>
+                                    <th>
+                                    <p className='p-2 text-center font-xl'>
+                                            5 40 38
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p className='p-2 text-center font-xl'>
+                                            Yes
+                                        </p>
+                                    </th>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div className='px-20 w-1/2'>
+                <div className='content-center mb-10'>
+                    <p className='font-serif text-4xl'>
+                        Your Code
+                    </p>
+                </div>
+                <div className="coding-field h-4/6 mb-10 flex justify-center">
+                    <textarea ref={ref} id="message" placeholder="please start your code with 'def func():'" className="editing w-full h-full" onKeyDown={handleKeyDown}></textarea>
+                    <pre id="highlighting" aria-hidden="true">
+                        <code className="language-html" id="highlighting-content"></code>
+                    </pre>
+                </div>
+                <div className='flex justify-end'>
+                    <button className="rounded-full bg-blue-700 py-1 px-4 font-serif text-white text-xl hover:bg-blue-800" type="submit" onClick={submit}>Submit</button>
+                </div>
+            </div>
+            <div className='px-10 w-1/5'>
+                <div className='mb-10'>
+                    <p className='font-serif text-4xl'>
+                        Result
+                    </p>
+                </div>
+                <div>
+                <Tabs
+                    defaultActiveKey="profile"
+                    id="uncontrolled-tab-example"
+                    className="mb-3"
+                    >
+                    <Tab eventKey="score" title="Score">
+                        <div className='p-2'>
+                            <p>{props.studentResult1[0]}</p>
+                        </div>
+                    </Tab>
+                    <Tab eventKey="detail" title="Detail">
+                        <div className='p-2'>
+                            <p>Cognitive Complexity: <ProgressBar now={props.studentResult1[1]}/></p><p> LOC: <ProgressBar now={props.studentResult1[2]}/></p><p>Halstead Volume: <ProgressBar now={props.studentResult1[3]}/></p><p>Cyclomatic Complexity: <ProgressBar now={props.studentResult1[4]}/></p><p>{props.studentResult1[5]}</p>
+                        </div>
+                    </Tab>
+
+                </Tabs>
+                </div>
             </div>
         </div>
-        <div className="coding-field">
-            <h1>Insert your code</h1>
-            <textarea ref={ref} id="message" placeholder="please start your code with 'def func():'" className="editing" onKeyDown={handleKeyDown}></textarea>
-            <pre id="highlighting" aria-hidden="true">
-                <code className="language-html" id="highlighting-content"></code>
-            </pre>
-            <button className="coding-button" type="submit" onClick={submit}>Submit</button>
-            </div>
-            <div className="back-button">
-                <Link href="/main"><i className="bi bi-arrow-left"></i></Link>
-            </div> 
-      
-        
       </Layout>)
 }
 function syncWriteFile(data: any) {
