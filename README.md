@@ -1,4 +1,4 @@
-# auto-grader
+# Auto-Grader
 SE Auto Grader Project
 
 Brief Background about the Auto-Grader Web Service: 
